@@ -25,4 +25,6 @@ class Patron extends Employe {
     public function deplacer () : string {
         return "Je me déplace en {$this->voiture}";
     }
+
+
 }
