@@ -2,8 +2,7 @@
 
 namespace App;
 
-class ChefService extends Employe
-{
+class ChefService extends Personnel {
     private string $nomService;
 
 
@@ -14,10 +13,13 @@ class ChefService extends Employe
     $this->nomService = $nomService;
     }
 
-    function presenter(): string
-    {
-        parent::presenter();
+    function presenter(): string {
         return "Bonjour je suis {$this->prenom} {$this->nom}, j'ai {$this->age} ans et je suis le chef du service {$this->nomService }";
+    }
+
+    function getSalaire(): int {
+        return $this->salaireBase + ($this->salaireBase*0.1);
+
     }
 
 

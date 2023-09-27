@@ -9,16 +9,27 @@ $patron2 = new \App\Patron('Vato','lOUIS',32,'rs4');
 $chef = new \App\ChefService('Kal','Lam',35,'DSIO');
 
 
-$entreprise->ajouterEmploye($patron);
-echo $entreprise->ajouterEmploye($patron2);
+echo $entreprise->ajouterEmploye($patron);
 $entreprise->ajouterEmploye($employe);
 $entreprise->ajouterEmploye($employe2);
 $entreprise->ajouterEmploye($chef);
 
 
-$entreprise->prenseterEmployes();
+/*$entreprise->prenseterPersonnels();
 
 echo PHP_EOL;
-/*echo $entreprise->retrouverPatron()->getNom();*/
+echo $entreprise->ajouterEmploye($patron2);
+echo $entreprise->retrouverPatron()->getNom();
+echo PHP_EOL;
+
+echo $employe->getSalaire();
+echo PHP_EOL;
+echo $entreprise->retrouverPatron()->getSalaire();
+echo PHP_EOL;*/
+echo $chef->getSalaire();
+
+print_r($entreprise->findAllSalaireBySalarie());
+
+
 
 /*print_r($entreprise->listEmployes());*/

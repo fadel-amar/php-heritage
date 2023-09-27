@@ -10,7 +10,7 @@ class Entreprise
     /**
      * @var Employe[]
      */
-    private array $employes;
+    private array $personnels;
 
     /**
      * @param string $nom
@@ -20,7 +20,7 @@ class Entreprise
     {
         $this->nom = $nom;
         $this->ville = $ville;
-        $this->employes = [];
+        $this->personnels = [];
     }
 
     /**
@@ -40,19 +40,18 @@ class Entreprise
     }
 
     /**
-     * @param Employe $employe
-     * @return void
+     * @param Employe $personnel
      */
     // Utilisation du polymorphisme d'objet sur le paramètre employe
-    public function ajouterEmploye(Employe $employe): string   {
+    public function ajouterEmploye(Personnel $personnel): string   {
         // Si c'est un patron
-        $siEmployePatron = $employe instanceof Patron;
+        $siEmployePatron = $personnel instanceof Patron;
         // Si l'entreprise ne possède pas de patron
         $siEntreprisePossedePatron = $this->retrouverPatron() != null;
 
         $siPossibleAjouter= !($siEmployePatron && $siEntreprisePossedePatron);
         if($siPossibleAjouter) {
-            $this->employes[] = $employe;
+            $this->personnels[] = $personnel;
             return 'true';
         }
         return "false\n";
@@ -60,17 +59,17 @@ class Entreprise
     }
 
 
-    public function prenseterEmployes(): void
+    public function prenseterPersonnels(): void
     {
-        foreach ($this->employes as $employe) {
+        foreach ($this->personnels as $personnel) {
             // utilisation du polymorphisme de méthode
-            echo $employe->presenter() . " \n";
+            echo $personnel->presenter() . " \n";
         }
     }
 
     public function retrouverPatron(): ?Patron
     {
-        foreach ($this->employes as $employe) {
+        foreach ($this->personnels as $employe) {
             if ($employe instanceof \App\Patron) {
                 return $employe;
             }
@@ -80,7 +79,7 @@ class Entreprise
 
     public function listEmployes (): array {
         $listEmployes = [];
-        foreach ($this->employes as $employe) {
+        foreach ($this->personnels as $employe) {
             $cle = (new \ReflectionClass($employe))->getShortName();
             if(!isset($listEmployes[$cle])){
                 $listEmployes[$cle] = [];
@@ -94,6 +93,15 @@ class Entreprise
 
 
     }*/
+
+    public function findAllSalaireBySalarie () :array {
+        $salaires = [];
+        foreach ($this->personnels as $personnel) {
+            $salaires['salarie'][] = [$personnel];
+            $salaires['salaire'][] = $personnel->getSalaire();
+        }
+        return $salaires;
+    }
 
 
 
