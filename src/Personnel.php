@@ -51,7 +51,7 @@ abstract class Personnel {
     {
         return $this->salaireBase;
     }
-
+//
 
 
     abstract public function presenter():string;
